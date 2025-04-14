@@ -1,0 +1,124 @@
+1.
+SELECT DNAME 
+FROM DEPT 
+WHERE DEPTNO IN (
+    SELECT DEPTNO 
+    FROM EMP 
+    GROUP BY DEPTNO 
+    HAVING COUNT(*) >= 5
+);
+DNAME
+--------------
+SALES
+RESEARCH
+
+2.
+SELECT LOC 
+FROM DEPT 
+WHERE DEPTNO IN (
+    SELECT DEPTNO 
+    FROM EMP 
+    GROUP BY DEPTNO 
+    HAVING COUNT(*) = 3
+);
+LOC
+-------------
+NEW YORK
+
+
+3.
+SELECT * 
+FROM EMP 
+WHERE SAL IN (
+    SELECT SAL 
+    FROM EMP 
+    GROUP BY SAL 
+    HAVING COUNT(*) > 1
+);
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+
+4.
+SELECT ENAME, SAL
+FROM EMP
+GROUP BY ENAME, SAL
+HAVING COUNT(*) > 1;
+
+no rows selected
+ 
+
+
+5.
+SELECT DEPTNO, SAL, COUNT(*)
+FROM EMP 
+GROUP BY DEPTNO, SAL 
+HAVING COUNT(*) > 1;
+
+
+    DEPTNO        SAL   COUNT(*)
+---------- ---------- ----------
+        30       1250          2
+        20       3000          2
+6.
+SQL> SELECT DEPTNO, HIREDATE, COUNT(*) 
+  2  FROM EMP
+  3  GROUP BY DEPTNO, HIREDATE
+  4  HAVING COUNT(*) > 1;
+
+no rows selected
+
+
+7.
+SELECT ENAME, SAL 
+FROM EMP 
+WHERE ENAME IN (
+    SELECT ENAME 
+    FROM EMP 
+    GROUP BY ENAME 
+    HAVING COUNT(*) >= 4
+);
+no rows selected
+
+8.
+SELECT DEPTNO, JOB, COUNT(*) 
+FROM EMP 
+GROUP BY DEPTNO, JOB 
+HAVING COUNT(*) > 1;
+
+    DEPTNO JOB         COUNT(*)
+---------- --------- ----------
+        20 CLERK              2
+        30 SALESMAN           4
+        20 ANALYST            2
+9.
+SQL> SELECT ENAME, JOB, COUNT(*)
+  2  FROM EMP
+  3  GROUP BY ENAME, JOB
+  4  HAVING COUNT(*) > 1;
+
+no rows selected
+
+
+
+10.
+SELECT * 
+FROM EMP 
+WHERE EMPNO IN (
+    SELECT MGR 
+    FROM EMP 
+    WHERE MGR IS NOT NULL 
+    GROUP BY MGR 
+    HAVING COUNT(*) >= 3
+);
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+
+
+
+

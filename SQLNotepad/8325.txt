@@ -1,0 +1,105 @@
+8/3/25                                
+--------------------------------------------------------------------------------------------------------------------------------------------
+1.Explain the difference between local variable and global variable.
+2.Explain Difference between static members and non static members
+3 Explain  the difference between method and constructor.
+4.Explain level  one access.
+5.Explain level two access.
+6.Explain Inheritance with its types.
+--------------------------------------------------------------------------------------------------------------------------------------------
+1.Explain the difference between local variable and global variable.
+local variables are the ones which can be declared with in the same method only, cannot be accessed  out side the method. When in comes to global variables they can be accessed any author method from different class also. they can be accessed outside the method with class name. Local variables does not have any types . Global variable will have two types which are static and non static .instializing global variables is not mandatory.Until  we insialize any variable compiler will provide its default value.
+-----------------------------------------------------------------------------------------------------------------------------
+ai
+Difference Between Local Variable and Global Variable
+1. Local Variables:
+These variables are declared inside a method, constructor, or block and can only be accessed within that specific scope.
+They are not accessible outside the method in which they are declared.
+Memory for local variables is allocated when the method is called and deallocated once the method execution is completed.
+They must be initialized before use; otherwise, the compiler will throw an error.
+Local variables do not have default values—they must be explicitly assigned a value before being used.
+They are stored in the stack memory, making them efficient in execution.
+They cannot have static or access modifiers (like public, private, or protected).
+2. Global Variables:
+These variables are declared outside any method, typically within a class, and can be accessed by any method in the same class and even from other classes using the class name or an instance of the class.
+They are classified into two types:
+Static Global Variables: Shared among all objects of the class and belong to the class itself. They can be accessed using ClassName.variableName.
+Non-Static Global Variables: Unique to each object of the class and require an instance to access (objectName.variableName).
+Global variables do not require explicit initialization; the compiler assigns a default value if not initialized (e.g., 0 for integers, null for objects, false for booleans).
+They are stored in the heap memory (for non-static global variables) or method area (for static global variables).
+Unlike local variables, they can have access modifiers (public, private, protected).
+
+ 
+
+| Feature           | Local Variable | Global Variable |
+|------------------|--------------|---------------|
+| **Declared In**  | Inside a method or block | Inside a class but outside methods |
+| **Scope**        | Limited to the method/block | Accessible by all methods in the class |
+| **Access Outside Class?** | ❌ No | ✅ Yes (using class name or object) |
+| **Types**        | No specific types | Static and Non-Static |
+| **Default Value** | ❌ Not provided (must initialize) | ✅ Provided by the compiler |
+| **Stored In**    | Stack memory | Heap (non-static) / Method area (static) |
+| **Lifetime**     | Exists only during method execution | Exists as long as the object/class is loaded |
+| **Access Modifiers** | ❌ Not allowed | ✅ Allowed (`public`, `private`, etc.) |
+| **Can Be Static?** | ❌ No | ✅ Yes |
+
+---
+
+This improved version makes the explanation clearer and more structured. Let me know if you need any further refinements! 😊
+----------------------------------------------------------------------------------------------------------------------------------------
+2.Explain Difference between static members and non static members
+a. Static members
+this members are the ones which are single copy in nature
+that means they cannot provide multiples copies, they can share
+it is will loaded  in the static pool area
+each class will have one static pool area
+they can be accessed with  the object created
+b. Non-Static members
+this members are the ones which are multiple copy in nature
+that means they can provide multiples copies
+it is will loaded  in the object area
+each class will have multiple object  area
+each object will have a object address
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+AI
+Difference Between Static and Non-Static Members
+a. Static Members
+Single Copy in Memory: Static members belong to the class rather than any specific object, meaning only one copy exists, shared among all instances of the class.
+Stored in the Static Pool Area: They are loaded into a special memory area known as the static pool when the class is first loaded.
+Access Without Object Creation: Static members can be accessed using the class name itself (ClassName.staticMember) or through an object, but using the class name is recommended.
+Lifetime: Static members exist as long as the class is loaded in memory. They are destroyed only when the program ends or the class is unloaded.
+Efficient Memory Usage: Since only one copy is maintained, memory consumption is optimized.
+Common Examples: Static variables, static methods, and static blocks in Java.
+Cannot Access Non-Static Members Directly: Since static members belong to the class and not an object, they cannot directly access non-static (instance) members unless an object reference is used.
+
+b. Non-Static Members
+Multiple Copies in Memory: Each object of the class gets its own separate copy of non-static members.
+Stored in the Object Area: These members are stored in the heap memory within the object area, where each object has its own memory allocation.
+Accessed Through Objects: Non-static members can only be accessed through an instance (object) of the class (objectName.nonStaticMember).
+Lifetime: They exist as long as the object exists. When an object is destroyed (e.g., by the garbage collector in Java), its non-static members are also removed from memory.
+Uses More Memory: Since every object has a separate copy of non-static members, memory consumption is higher if many objects are created.
+Can Access Both Static and Non-Static Members: Unlike static members, non-static members can access both static and non-static variables/methods within the class.
+-----------------------------------------------------------------------------------------------------------------------------------------
+3 Explain  the difference between method and constructor.
+a. Method
+b.constructor
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+4.Explain level  one access.
+Access 1: 
+IN hich static will access another staic member of the same class directly  as both of them are present in the same stastic pool area
+Access 2:
+Non ststiv to non ststic directly
+this  can accessed directly  cause they are in the same object area
+Access 3
+static to non static not directly
+ deacuse since static is single copy  and non stastic is multiple copy  nature
+to access we have to create  can object with object referece variable
+Accesss 4:
+
+
+
+5.Explain level two access.
+6.Explain Inheritance with its types.
+

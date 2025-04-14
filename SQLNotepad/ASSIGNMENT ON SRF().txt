@@ -1,0 +1,468 @@
+ASSIGNMENT ON SRF():
+```
+
+1. WAQT count number of characters present in 'SMITH'
+
+SELECT LENGTH('SMITH') AS LENGTH
+FROM DUAL;
+
+2. WAQT extract first 3 characters of the emp names
+
+SELECT SUBSTR(ENAME,1,3) AS "FIRST 3 CHARACTERS"
+FROM EMP;
+
+3. WAQT extract last 3 characters of the employee names
+
+SELECT SUBSTR(ENAME,-3) AS "LAST 3 CHARACTERS"
+FROM EMP;
+
+4. WAQT to display first half of employee names 
+
+SELECT SUBSTR(ENAME,1,LENGTH(ENAME)/2)
+FROM EMP;
+
+5. WAQT to display second half of employee names
+
+SELECT SUBSTR(ENAME,LENGTH(ENAME)/2+1,-1)
+FROM EMP;
+
+6. WAQTD the number of times char 'A' is present in BANANA !!!
+
+SELECT LENGTH('BANANA !!!')-LENGTH(REPLACE('BANANA !!!','A')) AS "NO OF A"
+FROM DUAL;
+
+7.WAQTD to count number of time 'A' is present in 'MALAYALAM'
+
+SELECT LENGTH('MALAYALAM')-LENGTH(REPLACE('MALAYALAM','A')) AS "NO OF A"
+FROM DUAL
+
+8. WAQTD NAMES OF THE EMPLOYEES IF THEY HAVE CHAR 'A' PRESENT IN THEIR NAMES
+
+SELECT ENAME
+FROM EMP
+WHERE INSTR(ENAME,'A',1,1)>0;
+
+ENAME
+----------
+ADAMS
+
+9. WAQTD NAMES OF THE EMPLOYEES IF THEY HAVE CHAR 'A' PRESENT ATLEAST TWICE IN THEIR NAMES
+
+SELECT ENAME 
+FROM EMP
+WHERE INSTR(ENAME,'A',1,2)>0;
+
+ENAME
+----------
+ALLEN
+WARD
+MARTIN
+BLAKE
+CLARK
+ADAMS
+JAMES
+7 rows selected.
+
+10. WAQTD NAMES OF THE EMPLOYEES IF THEY HAVE CHAR 'A' PRESENT ATLEAST THRICE IN THEIR NAMES
+
+SELECT ENAME 
+FROM EMP
+WHERE INSTR(ENAME,'A',1,3)>0;
+no rows selected
+
+11. WAQTD NAMES OF THE EMPLOYEES IF THEY HAVE CHAR'A' EXACTLY TWICE
+SELECT ENAME
+FROM EMP
+WHERE INSTR(ENAME,'A',1,2)>0 AND INSTR(ENAME,'A',1,3)=0;
+
+ENAME
+----------
+ADAMS
+
+12. WAQTD ENAMES OF THE EMPLOYEES WHO EARN SALARY IN MULTIPLES OF 3
+
+SELECT ENAME,SAL
+FROM EMP
+WHERE MOD(SAL,3)=0;
+
+ENAME             SAL
+---------- ----------
+BLAKE            2850
+SCOTT            3000
+TURNER           1500
+FORD             3000
+
+13. WAQTD DETAILS OF THE EMPLOYEE WHO HAVE ODD EID
+
+SELECT EMP.*
+FROM EMP
+WHERE MOD(EMPNO,2) <> 0;
+
+    EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+
+14. WAQTD DETAILS OF THE EMPLOYEE WHO WAS HIRED ON A SUNDAY
+
+SELECT EMP.*
+FROM EMP
+WHERE TO_CHAR(HIREDATE,'DAY')='SUNDAY';
+no rows selected
+
+15. WAQTD DETAILS OF AN EMPLOYEE HIRED ON MONDAY AT 10AM
+
+SELECT EMP.*
+FROM EMP
+WHERE TO_CHAR(HIREDATE,'DAY')='SUNDAY' AND TO_CHAR(HIREDATE,'HH24:MI')='10.00';
+
+no rows selected
+
+
+1. List employees whose name having 4 characters
+SELECT ENAME
+FROM EMP
+WHERE LENGTH(ENAME)=4;
+ENAME
+----------
+WARD
+KING
+FORD
+
+2. List employees whose job is having 7 characters
+SELECT ENAME,JOB
+FROM EMP
+WHERE LENGTH(JOB)=7;
+ENAME      JOB
+---------- ---------
+JONES      MANAGER
+BLAKE      MANAGER
+CLARK      MANAGER
+SCOTT      ANALYST
+FORD       ANALYST
+
+3. Find out how many times letter 'S' occurs in 'qspiders'
+SELECT LENGTH('QSPIDERS')-LENGTH(REPLACE('QSPIDERS','S')) AS "NO OF S"
+FROM DUAL;
+  NO OF S
+----------
+         2
+
+4. List the employees whose job is having last 3 characters as 'man'
+ 
+SELECT ENAME,JOB
+FROM EMP
+WHERE SUBSTR(JOB,-3)='MAN';
+
+ENAME      JOB
+---------- ---------
+ALLEN      SALESMAN
+WARD       SALESMAN
+MARTIN     SALESMAN
+TURNER     SALESMAN
+
+5. List employees whose job is having first 3 characters as 'man'
+
+SELECT ENAME,JOB
+FROM EMP
+WHERE SUBSTR(JOB,1,3)='MAN';
+ENAME      JOB
+---------- ---------
+JONES      MANAGER
+BLAKE      MANAGER
+CLARK      MANAGER
+
+6. Display all the names whose name is having exactly 1 'L'
+
+SELECT ENAME
+FROM EMP
+WHERE INSTR(ENAME,'L',1,1)>0 AND INSTR(ENAME,'L',1,2)=0;
+ENAME
+----------
+BLAKE
+CLARK
+
+7. Display dept names which are having letter '0'
+
+SELECT DNAME
+FROM DEPT
+WHERE INSTR(DEPTNO,'0',1,1)>0;
+DNAME
+--------------
+ACCOUNTING
+RESEARCH
+SALES
+OPERATIONS
+
+
+SELECT DNAME
+FROM DEPT
+WHERE INSTR(DNAME,'O',1,1)>0;
+DNAME
+--------------
+ACCOUNTING
+OPERATIONS
+
+9. Calculate number of L in string 'HELLLLL'
+
+SELECT LENGTH('HELLLLL')-LENGTH(REPLACE('HELLLLL','L')) AS "NO OF L"
+FROM DUAL;
+   NO OF L
+----------
+         5
+
+10. Display all the employees whose job has a string 'MAN'
+
+SELECT ENAME,JOB
+FROM EMP 
+WHERE INSTR(JOB,'MAN',1,1)>0;
+ENAME      JOB
+---------- ---------
+ALLEN      SALESMAN
+WARD       SALESMAN
+JONES      MANAGER
+MARTIN     SALESMAN
+BLAKE      MANAGER
+CLARK      MANAGER
+TURNER     SALESMAN
+
+11. Display all the employees whose job starts with string 'MAN'
+
+SELECT ENAME,JOB
+FROM EMP
+WHERE SUBSTR(JOB,1,3)='MAN';
+ENAME      JOB
+---------- ---------
+JONES      MANAGER
+BLAKE      MANAGER
+CLARK      MANAGER
+
+12. Display all the employees whose job ends with string "MAN'
+
+SELECT ENAME,JOB
+FROM EMP
+WHERE SUBSTR(JOB,-3)='MAN';
+
+ENAME      JOB
+---------- ---------
+ALLEN      SALESMAN
+WARD       SALESMAN
+MARTIN     SALESMAN
+TURNER     SALESMAN
+
+13. Display first 3 characters of ename in lower case and rest everything in upper case. (If ename is 'QSPIDERS' then display this as 'qspIDERS') 
+
+SELECT LOWER(SUBSTR('QSPIDERS',1,3)) || UPPER(SUBSTR('QSPIDERS',4)) AS CASES
+FROM DUAL;
+CASES
+--------
+qspIDERS
+
+14. list the employees hired on a Wednesday
+SELECT ENAME
+FROM EMP
+WHERE TO_CHAR(HIREDATE,'DAY')='WEDNESDAY';
+ENAME
+----------
+SMITH
+
+16. list the employees hired on a Sunday in the month of may
+
+SELECT ENAME
+FROM EMP
+WHERE TRIM(TO_CHAR(HIREDATE,'DAY'))='SUNDAY' AND TRIM(TO_CHAR(HIREDATE,'MON'))='MAY';
+
+no rows selected
+
+ENAME      TO_CHAR(H LENGTH(TO_CHAR(HIREDATE,'DAY'))
+---------- --------- -------------------------------
+SMITH      WEDNESDAY                               9
+ALLEN      FRIDAY                                  9
+WARD       SUNDAY                                  9
+JONES      THURSDAY                                9
+MARTIN     MONDAY                                  9
+
+
+ASSIGNMENT ON MRF():
+```
+
+1.WAQTD NUMBER OF EMPLOYEES GETTING SALARY LESS THAN 2000 IN DEPTNO 10
+SELECT COUNT(*)
+FROM EMP
+WHERE SAL<2000 AND DEPTNO=10;
+  COUNT(*)
+----------
+         1
+
+2.WAQTD TOTAL SALARY NEEDED TO PAY EMPLOYEES WORKING AS CLERK
+SELECT SUM(SAL)
+FROM EMP
+WHERE JOB='CLERK';
+  SUM(SAL)
+----------
+      4150
+
+3.WAQTD AVERAGE SALARY NEEDED TO PAY ALL EMPLOYEES
+SELECT AVG(SAL)
+FROM EMP;
+ AVG(SAL)
+----------
+2073.21429
+
+SELECT TRUNC(AVG(SAL))
+FROM EMP;
+TRUNC(AVG(SAL))
+---------------
+           2073
+
+4.WAQTD NUMBER OF EMPLOYEES HAVING 'A' AS THEIR FIRST CHARACTER
+SELECT COUNT(*)
+FROM EMP
+WHERE SUBSTR(ENAME,1,1)='A';
+  COUNT(*)
+----------
+         2
+
+
+5. WAQTD NUMBER OF EMPLOYEES WORKING AS CLERK OR MANAGER
+
+SELECT COUNT(*)
+FROM EMP
+WHERE JOB IN('CLERK','MANAGER');
+  COUNT(*)
+----------
+         7
+
+6. WAQTD TOTAL SALARY NEEDED TO PAY EMPLOYEES HIRED IN FEB
+SELECT SUM(SAL)
+FROM EMP
+WHERE TO_CHAR(HIREDATE,'MON')='FEB';
+  SUM(SAL)
+----------
+      2850
+
+
+7. WAQTD NUMBER OF EMPLOYEES REPORTING TO 7839 (MGR)
+SELECT COUNT(*)
+FROM EMP
+WHERE MGR=7839;
+  COUNT(*)
+----------
+         3
+
+
+8. WAQTD NUMBER OF EMPLOYEES GETTING COMISSION IN DEPTNO 30
+SELECT COUNT(*)
+FROM EMP
+WHERE COMM IS NOT NULL AND DEPTNO=30;
+
+  COUNT(*)
+----------
+         4
+
+9.WAQTD AVG SAL, TOTAL SAL, NUMBER OF EMPS AND MAXIMUM SALARY GIVEN TO EMPLOYEES WORKING AS PERSIDENT
+
+SELECT AVG(SAL),SUM(SAL),COUNT(*),MAX(SAL)
+FROM EMP
+WHERE JOB='PRESIDENT';
+ AVG(SAL)   SUM(SAL)   COUNT(*)   MAX(SAL)
+---------- ---------- ---------- ----------
+      5000       5000          1       5000
+
+10.WAQTD NUMBER OF EMPLOYEES HAVING 'A' IN THEIR NAMES
+SELECT COUNT(*)
+FROM EMP
+WHERE INSTR(ENAME,'A',1,1)>0;
+
+ COUNT(*)
+----------
+         7
+
+SELECT COUNT(*)
+FROM EMP
+WHERE ENAME LIKE '%A%';
+
+11.WAQTD NUMBER OF EMPS AND TOTAL SALARY NEEDED TO PAY THE EMPLOYEES WHO HAVE 2 CONSICUTIVE L'S IN THEIR NAMES
+
+SELECT COUNT(*),SUM(SAL)
+FROM EMP
+WHERE INSTR(ENAME,'LL',1,1)>0;
+  COUNT(*)   SUM(SAL)
+---------- ----------
+         2       2900
+
+12.WAQTD NUMBER OF DEPARTMENTS PRESENT IN EMPLOYEE TABLE
+
+SELECT COUNT( DISTINCT DEPTNO)
+FROM EMP;
+COUNT(DISTINCTDEPTNO)
+---------------------
+                    3
+
+13.WAQTD NUMBER OF EMPLOYEES HAVING CHARACTER 'Z' IN THEIR NAMES
+
+SELECT COUNT(*)
+FROM EMP
+WHERE INSTR(ENAME,'Z',1,1)>0;
+COUNT(*)
+----------
+         0
+
+14. WAQTD NUMBER OF EMPLOYEES HAVING '$' IN THEIR NAMES.
+SELECT COUNT(*)
+FROM EMP
+WHERE INSTR(ENAME,'$',1,1)>0;
+COUNT(*)
+----------
+         0
+
+15. WAQTD TOTAL SALARY GIVEN TO EMPLOYEES WORKING AS CLERK IN DEPT 30
+SELECT SUM(SAL)
+FROM EMP
+WHERE JOB='CLERK' AND DEPTNO=30;
+ SUM(SAL)
+----------
+       950
+
+16.WAQTD MAXIMUM SALARY GIVEN TO THE EMPLOYEES WORKING AS ANALYST 
+SELECT MAX(SAL)
+FROM EMP
+WHERE JOB='ANALYST';
+  MAX(SAL)
+----------
+      3000
+
+17.WAQTD NUMBER OF DISTINCT SALARIES PRESENT IN EMPLOYEE TABLE
+
+SELECT COUNT(DISTINCT SAL)
+FROM EMP;
+COUNT(DISTINCTSAL)
+------------------
+                12
+
+
+18.WAQTD NUMBER OF JOBS PRESENT IN EMPLOYEE TABLE
+SELECT COUNT(DISTINCT JOB)
+FROM EMP;
+COUNT(DISTINCTJOB)
+------------------
+                 5
+
+19.WATQD AVG SALARY GIVEN TO THE CLERK
+
+SELECT AVG(SAL)
+FROM EMP 
+WHERE JOB='CLERK';
+  AVG(SAL)
+----------
+    1037.5
+
+20. WAQTD MINIMUM SALARY GIVEN TO THE EMPLOYEES WHO WORK IN DEPT 10 AS MANAGER OR A CLERK
+SELECT MIN(SAL)
+FROM EMP
+WHERE DEPTNO=10 AND JOB IN('MANAGER','CLERK');
+ MIN(SAL)
+----------
+      1300

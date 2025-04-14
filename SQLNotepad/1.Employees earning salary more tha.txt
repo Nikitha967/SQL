@@ -1,0 +1,109 @@
+ 1.Employees earning salary more than any Salesman
+SELECT ENAME, SAL
+FROM EMP
+WHERE SAL > ALL (SELECT SAL 
+                 FROM EMP
+                 WHERE JOB = 'SALESMAN');
+
+ENAME             SAL
+---------- ----------
+CLARK            2450
+BLAKE            2850
+JONES            2975
+SCOTT            3000
+FORD             3000
+KING             5000
+
+6 rows selected.
+
+2.Employees hired after all the Clerks
+SELECT * 
+FROM EMP
+WHERE HIREDATE > ALL (SELECT HIREDATE
+                       FROM EMP
+                       WHERE JOB = 'CLERK');
+no rows selected
+
+3.Employees earning less than at least one Manager
+
+SELECT ENAME, SAL
+FROM EMP
+WHERE SAL < ANY (SELECT SAL 
+                 FROM EMP 
+                 WHERE JOB = 'MANAGER');
+
+ENAME             SAL
+---------- ----------
+SMITH             800
+JAMES             950
+ADAMS            1100
+WARD             1250
+MARTIN           1250
+MILLER           1300
+TURNER           1500
+ALLEN            1600
+CLARK            2450
+BLAKE            2850
+
+10 rows selected.
+
+4.Employees hired before all the Managers
+
+
+SELECT ENAME, HIREDATE
+FROM EMP
+WHERE HIREDATE < ALL (SELECT HIREDATE
+                      FROM EMP
+                      WHERE JOB = 'MANAGER');
+ENAME      HIREDATE
+---------- ---------
+WARD       22-FEB-81
+ALLEN      20-FEB-81
+SMITH      17-DEC-80
+
+5.Employees hired after all Managers and earning more than all Clerks
+
+SELECT ENAME, SAL, HIREDATE
+FROM EMP
+WHERE HIREDATE > ALL (SELECT HIREDATE
+                      FROM EMP 
+                      WHERE JOB = 'MANAGER')
+       AND SAL > ALL (SELECT SAL 
+                      FROM EMP
+                       WHERE JOB = 'CLERK');
+ENAME             SAL HIREDATE
+---------- ---------- ---------
+TURNER           1500 08-SEP-81
+KING             5000 17-NOV-81
+FORD             3000 03-DEC-81
+SCOTT            3000 19-APR-87
+
+
+6.Employees working as Clerks but hired before at least one Salesman
+SELECT * 
+FROM EMP
+WHERE JOB = 'CLERK' 
+AND HIREDATE < ANY (SELECT HIREDATE
+                    FROM EMP 
+                    WHERE JOB = 'SALESMAN');
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+
+7. Employees hired after all employees of Department 10
+SELECT ENAME, HIREDATE
+FROM EMP
+WHERE HIREDATE > ALL (SELECT HIREDATE 
+                      FROM EMP 
+                      WHERE DEPTNO = 10);
+
+
+ENAME      HIREDATE
+---------- ---------
+SCOTT      19-APR-87
+ADAMS      23-MAY-87
+
+
+
+

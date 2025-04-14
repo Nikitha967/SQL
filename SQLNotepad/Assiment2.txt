@@ -1,0 +1,106 @@
+
+1. Create the employees table
+CREATE TABLE employees (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    job_title VARCHAR(50),
+    salary DECIMAL(10, 2)
+);
+
+
+
+INSERT INTO employees VALUES(101,'Smith', 'Manager', 1500);
+INSERT INTO employees VALUES(102,'Johnson', 'Engineer', 1800);
+INSERT INTO employees VALUES(103,'Williams', 'Technician', 1200);
+INSERT INTO employees VALUES(104,'Brown', 'Clerk', 1000);
+INSERT INTO employees VALUES(105,'Taylor', 'Supervisor', 1600);
+INSERT INTO employees VALUES(106,'Davis', 'Assistant', 1100);
+INSERT INTO employees VALUES(107,'King', 'Worker', 1100);
+
+
+UPDATE employees
+SET salary = 2000
+WHERE name = 'Smith';
+
+2.
+UPDATE employees
+SET salary = salary * 2
+WHERE name = 'King';
+
+
+3.
+CREATE TABLE STUDENT (
+    STUDENT_ID INT PRIMARY KEY,          
+    STUDENT_NAME VARCHAR(100) NOT NULL, 
+    BRANCH VARCHAR(50),                 
+    PERCENTAGE DECIMAL(5, 2),           
+    NO_of_Backlogs INT               
+);
+
+SELECT * FROM STUDENT;
+
+INSERT INTO STUDENT VALUES (1, 'John Doe', 'CSE', 85.75, 2);
+INSERT INTO STUDENT VALUES (2, 'Alice Smith', 'ECE', 92.50, 0);
+INSERT INTO STUDENT VALUES (3, 'Bob Johnson', 'MECH', 78.40, 3);
+INSERT INTO STUDENT VALUES (4, 'Emma Davis', 'CIVIL', 88.20, 1);
+INSERT INTO STUDENT VALUES (5, 'Chris Brown', 'IT', 81.00, 0);
+INSERT INTO STUDENT VALUES (6, 'Sophia Taylor', 'EEE', 74.50, 4);
+INSERT INTO STUDENT VALUES (7, 'Michael Clark', 'CSE', 95.25, 0);
+INSERT INTO STUDENT VALUES (8, 'Olivia Martinez', 'BIOTECH', 67.80, 5);
+
+4.
+
+DELETE FROM EMPLOYEE
+WHERE EMPLOYEE_NAME LIKE 'T%';
+
+5.
+DELETE FROM EMP
+WHERE EMP_NAME = 'ADAMS';
+
+6.
+UPDATE EMP
+SET SALARY = 3550
+WHERE CITY = 'NEW YORK';
+
+7.
+CREATE TABLE LIBRARY (
+    BOOK_NO INT PRIMARY KEY,        
+    BOOK_NAME VARCHAR(255) NOT NULL,
+    AUTHOR VARCHAR(255) NOT NULL,   
+    PUBLISHED DATE                  
+);
+
+
+8.
+
+INSERT INTO LIBRARY VALUES (BOOK_NO, BOOK_NAME, AUTHOR, PUBLISHED)
+INSERT INTO LIBRARY VALUES (1, 'The Great Gatsby', 'F. Scott Fitzgerald', '1925-04-10');
+INSERT INTO LIBRARY VALUES (2, 'To Kill a Mockingbird', 'Harper Lee', '1960-07-11');
+INSERT INTO LIBRARY VALUES (3, '1984', 'George Orwell', '1949-06-08');
+INSERT INTO LIBRARY VALUES (4, 'Pride and Prejudice', 'Jane Austen', '1813-01-28');
+INSERT INTO LIBRARY VALUES (5, 'The Catcher in the Rye', 'J.D. Salinger', '1951-07-16');
+
+
+9.
+CREATE TABLE BORROWED_BOOKS (
+    BORROW_ID INT PRIMARY KEY AUTO_INCREMENT, 
+    STUDENT_ID INT NOT NULL,                 
+    BOOK_NO INT NOT NULL,                     
+    BORROW_DATE DATE NOT NULL,                
+    RETURN_DATE DATE,                         
+    FOREIGN KEY (STUDENT_ID) REFERENCES STUDENT(STUDENT_ID),
+    FOREIGN KEY (BOOK_NO) REFERENCES LIBRARY(BOOK_NO)
+);
+
+10.
+INSERT INTO STUDENT VALUES  (&STUDENT_ID, &STUDENT_NAME, &BRANCH, &PERCENTAGE, &NO_of_Backlogs)
+INSERT INTO STUDENT VALUES  (9, 'Liam Wilson', 'CSE', 89.30, 1);
+INSERT INTO STUDENT VALUES  (10, 'Mia Anderson', 'ECE', 91.40, 0);
+INSERT INTO STUDENT VALUES  (11, 'Ethan Hall', 'MECH', 76.25, 2);
+
+11.
+
+
+
+
+

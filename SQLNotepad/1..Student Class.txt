@@ -1,0 +1,275 @@
+1..Student Class :
+
+
+
+package StyleProgramming;
+import java.util.Scanner;
+public class StudentDetails {
+
+	private static String schoolName="Blue Bells Public School";
+
+	private String studentName;
+
+	private int studentId;
+
+	private double studentPerc;
+
+	public void validationDetails(String studentName, int studentId, double studentPerc) {
+
+		boolean isValidName=StudentValidation.nameValidation(studentName);
+
+		if(isValidName) {
+
+			this.studentName=studentName;
+
+		}
+
+		else {
+
+			System.err.println("enter valid name ......");
+
+		}
+
+		/id validation/
+
+		boolean isValidId=StudentValidation.studentIdValidation(studentId);
+
+		if(isValidId) {
+
+			this.studentId=studentId;
+
+		}
+
+		else
+
+		{
+
+			System.err.println("enter valid Id....");
+
+		}
+
+		/percentge validation/
+
+		boolean isValidPercentage=StudentValidation.studentPercentageValidation(studentPerc);
+
+		if(isValidPercentage) {
+
+			this.studentPerc=studentPerc;
+
+		}
+
+		else {
+
+			System.err.println("enter valid percentage...");
+
+		}
+
+		
+
+	}
+
+	public double percentageConversion(double studentPerc) {
+
+		double cgpa=studentPerc/10;
+
+		return cgpa;
+
+	}
+
+	public void displayStudentDetails() {
+
+		System.out.println("School Name id : "+schoolName);
+
+		System.out.println("Student Name is : "+ studentName);
+
+		System.out.println("Student id is : "+ studentId);
+
+		System.out.println("Student marks is : "+percentageConversion(studentPerc));
+
+		
+
+	}
+
+	
+
+}
+
+
+
+2..Validation class code:
+
+
+
+
+
+package StyleProgramming;
+
+
+
+public class StudentValidation {
+
+	private static int[] studentIds=new int[100];
+
+	private static int index=0;
+
+	public static boolean nameValidation(String studentName) {
+
+		int condition1=0;
+
+		int condition2=0;
+
+		/*condition to check length of name */
+
+		int count=0;
+
+		
+
+		for(int i=0;i<=studentName.length()-1;i++) {
+
+			count++;
+
+		}
+
+		if(count==4) {
+
+			condition1=1;
+
+		}
+
+		/to check first char must be capital/
+
+		char firstLetter=studentName.charAt(0);
+
+		if(Character.isUpperCase(firstLetter)) {
+
+			condition2=1;
+
+		}
+
+		/climax condition/
+
+		if(condition2==1&&condition1==1) {
+
+			return true;
+
+		}
+
+		else {
+
+			return false;
+
+		}
+
+	}
+
+	public static boolean studentIdValidation(int studentId) {
+
+		int condition1=0;
+
+		int condition2=0;
+
+		int count=0;
+
+		int temp=studentId;
+
+		while(temp>0) {
+
+			count++;
+
+			temp/=10;
+
+		}
+
+		if(count==4)
+
+			condition1=1;
+
+		/condition 2 unique/
+
+		boolean isUnique=true;
+
+		for(int i=0;i<=studentIds.length-1;i++) {
+
+			if(studentIds[i]==studentId) {
+
+				isUnique=false;
+
+				break;
+
+			}
+
+			
+
+		}
+
+		studentIds[index++]=studentId;
+
+		if(isUnique) {
+
+			condition2=1;
+
+		}
+
+		/climax condition/
+
+		if(condition1==1&&condition2==1)
+
+			return true;
+
+		else
+
+			return false;
+
+	}
+
+	public static boolean studentPercentageValidation(double studentPerc) {
+
+		if(studentPerc>=1&&studentPerc<=99) {
+
+			return true;
+
+		}
+
+		else {
+
+			return false;
+
+		}
+
+	}
+
+}
+
+3..main class code :
+
+
+
+package StyleProgramming;
+
+
+
+import java.util.Scanner;
+
+
+
+public class StudentMain {
+
+	public static void main(String[] args) {
+
+		Scanner sc=new Scanner(System.in);
+
+		StudentDetails student1=new StudentDetails();
+
+		StudentDetails student2=new StudentDetails();
+
+		student1.validationDetails("Nani",4567,89.4);
+
+		student2.validationDetails("Ravi",4568,88.4);
+
+		student1.displayStudentDetails();
+
+		student2.displayStudentDetails();
+
+	}
+
+}
